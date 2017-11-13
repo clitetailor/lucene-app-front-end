@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomePageRightComponent } from './home-page-right.component';
+import { RightContentComponent } from './right-content.component';
 
-describe('HomePageRightComponent', () => {
-  let component: HomePageRightComponent;
-  let fixture: ComponentFixture<HomePageRightComponent>;
+describe('RightContentComponent', () => {
+  let component: RightContentComponent;
+  let fixture: ComponentFixture<RightContentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageRightComponent ]
+      declarations: [ RightContentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePageRightComponent);
+    fixture = TestBed.createComponent(RightContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,39 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HomePageRightComponent } from './home-page/home-page-right/home-page-right.component';
-import { HomePageLeftComponent } from './home-page/home-page-left/home-page-left.component';
-import { SearchResultPageLeftComponent } from './home-page/search-result-page-left/search-result-page-left.component';
-import { SearchResultPageRightComponent } from './home-page/search-result-page-right/search-result-page-right.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SearchResultPageComponent } from './search-result-page/search-result-page.component';
+import { LeftContentComponent } from './home-page/left-content/left-content.component';
+import { RightContentComponent } from './home-page/right-content/right-content.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomePageComponent,
-    children: [
-      { path: '', component: HomePageLeftComponent, outlet: 'left-side' },
-      { path: '', component: HomePageRightComponent, outlet: 'right-side' }
-    ]
-  },
-  {
-    path: 'search',
-    component: HomePageComponent,
-    children: [
-      { path: '', component: SearchResultPageLeftComponent, outlet: 'left-side' },
-      { path: '', component: SearchResultPageRightComponent, outlet: 'right-side' }
-    ]
-  }
+  { path: '', component: HomePageComponent },
+  { path: 'search', component: SearchResultPageComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageRightComponent,
-    HomePageLeftComponent,
-    SearchResultPageLeftComponent,
-    SearchResultPageRightComponent,
-    HomePageComponent
+    HomePageComponent,
+    SearchResultPageComponent,
+    LeftContentComponent,
+    RightContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +30,9 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [ ],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
