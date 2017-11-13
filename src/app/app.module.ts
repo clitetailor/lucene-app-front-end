@@ -9,6 +9,8 @@ import { HomePageLeftComponent } from './home-page/home-page-left/home-page-left
 import { SearchResultPageLeftComponent } from './home-page/search-result-page-left/search-result-page-left.component';
 import { SearchResultPageRightComponent } from './home-page/search-result-page-right/search-result-page-right.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SearchPageLeftComponent } from './search-page-left/search-page-left.component';
+import { SearchPageRightComponent } from './search-page-right/search-page-right.component';
 
 const appRoutes: Routes = [
   {
@@ -23,8 +25,9 @@ const appRoutes: Routes = [
     path: 'search',
     component: HomePageComponent,
     children: [
-      { path: '', component: SearchResultPageLeftComponent, outlet: 'left-side' },
-      { path: '', component: SearchResultPageRightComponent, outlet: 'right-side' }
+      { path: '', component: SearchPageLeftComponent, outlet: 'left-side' },
+      { path: '', component: SearchPageRightComponent, outlet: 'right-side' },
+      { path: 'query', component: SearchResultPageRightComponent, outlet: 'right-side' }
     ]
   }
 ];
@@ -36,7 +39,9 @@ const appRoutes: Routes = [
     HomePageLeftComponent,
     SearchResultPageLeftComponent,
     SearchResultPageRightComponent,
-    HomePageComponent
+    HomePageComponent,
+    SearchPageLeftComponent,
+    SearchPageRightComponent
   ],
   imports: [
     BrowserModule,
