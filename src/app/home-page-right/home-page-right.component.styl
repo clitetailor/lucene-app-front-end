@@ -1,39 +1,67 @@
+@import '../px-to-vw.styl'
+
 .right-wrapper {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
 
+  height: 100%;
+
+  .wrapper-1-4 {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column nowrap;
+  }
+
+  .wrapper-2-3-5-6 {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+
+    width: $(188) * 2 + $(16px) * 4;
+  }
+
   for $i in 1 2 3 4 5 6 {
-    .image-ith-{$i} {
-      background: blue;
+    .image-{$i} {
+      margin: $(16px);
+      background-image: url('/assets/image-' + $i + '.jpg');
+      background-size: cover;
+      background-position: center;
+
+      border-radius: $(8px);
     }
   }
 
-  .image-ith-1 {
-    width: 182px;
-    height: 199px;
+  .image-1 {
+    width: $(182px);
+    height: $(200px);
   }
 
-  .image-ith-2 {
-    width: 134px;
-    height: 226px;
+  .image-4 {
+    width: $(182px);
+    height: $(250px);
   }
 
-  .image-ith-3 {
-    width: 242px;
-    height: 226px;
+  .image-2 {
+    width: $(134px);
+    height: $(226px);
   }
 
-  .image-ith-4 {
+  .image-3 {
+    width: $(242px);
+    height: $(226px);
 
+    background-image: url('/assets/image-3.png');
   }
 
-  .image-ith-5 {
-
+  .image-5 {
+    width: $(188px);
+    height: $(224px);
   }
 
-  .image-ith-6 {
-
+  .image-6 {
+    width: $(188px);
+    height: $(224px);
   }
 }
