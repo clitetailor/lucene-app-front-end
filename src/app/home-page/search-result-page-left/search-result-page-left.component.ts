@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-search-result-page-left',
   templateUrl: './search-result-page-left.component.html',
-  styleUrls: ['./search-result-page-left.component.css']
+  styleUrls: ['./search-result-page-left.component.styl']
 })
 export class SearchResultPageLeftComponent implements OnInit {
 
