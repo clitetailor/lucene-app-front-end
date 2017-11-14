@@ -1,5 +1,21 @@
 <div class="search-result">
-  <div class="no-result" *ngIf="results">
+  <div class="no-result" *ngIf="!isAbleToShow()">
     <b>There's no result so far!</b>
+  </div>
+
+  <div class="results" *ngIf="isAbleToShow()">
+    <div class="result-page" *ngFor="let item of results">
+      <div class="page-title">
+        <h2>
+          <a>
+            {{item.title}}
+          </a>
+        </h2>
+      </div>
+
+      <div class="page-preview-content">
+        <p>{{item.content}}</p>
+      </div>
+    </div>
   </div>
 </div>

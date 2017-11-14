@@ -14,4 +14,7 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
   }
 
+  isAbleToShow() {
+    return Array.isArray(this.results) && this.results.length > 0;
+  }
 }

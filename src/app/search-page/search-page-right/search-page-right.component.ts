@@ -27,6 +27,11 @@ export class SearchPageRightComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  initialize() {
+    this.results = []
   }
 
   openSearchField() {
