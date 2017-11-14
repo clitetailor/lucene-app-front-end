@@ -7,18 +7,20 @@ import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular
 })
 export class SearchPageRightComponent implements OnInit {
 
-  title = 'what is this?';
+  snippet = '';
 
-  items = [
-    'what is that thing?',
-    'what is that that thing?'
+  dropdownList = [
+    'what are you thinking?',
+    'what do you think?'
   ];
 
   searchFieldActive = false;
   searchConfirmed = false;
 
+  results = [];
+
   @ViewChild('searchInput') searchInput: ElementRef;
-  @HostListener('keydown.esc') onEscapeButtonClick() {
+  @HostListener('window:keydown.esc') onEscapeButtonClick() {
     this.closeSearchField();
   }
 

@@ -1,6 +1,6 @@
 <div class="right-wrapper">
 
-  <div class="search-bar" [title]="title">
+  <div class="search-bar">
     <!-- Search Input. -->
     <div class="search-input-width">
       <div
@@ -17,7 +17,10 @@
         (click)="openSearchField()">
       </div>
 
-      <div class="search-input-text" [class.active]="searchFieldActive">
+      <div
+        class="search-input-text"
+        [class.active]="searchFieldActive"
+        [attr.data-snippet]="snippet">
         <input
           type="text" placeholder="Search"
           #searchInput
@@ -30,11 +33,11 @@
 
   <div class="content">
     <ng-template [ngIf]="searchFieldActive">
-      <app-search-dropdown [list]="items"></app-search-dropdown>
+      <app-search-dropdown [list]="dropdownList"></app-search-dropdown>
     </ng-template>
 
     <ng-template [ngIf]="!searchFieldActive">
-      <app-search-result></app-search-result>
+      <app-search-result [results]="results"></app-search-result>
     </ng-template>
   </div>
 </div>
