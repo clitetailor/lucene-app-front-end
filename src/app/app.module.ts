@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomePageRightComponent } from './home-page/home-page-right/home-page-right.component';
@@ -9,6 +10,9 @@ import { HomePageLeftComponent } from './home-page/home-page-left/home-page-left
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageLeftComponent } from './search-page/search-page-left/search-page-left.component';
 import { SearchPageRightComponent } from './search-page/search-page-right/search-page-right.component';
+import { SearchDropdownComponent } from './search-page/search-page-right/search-dropdown/search-dropdown.component';
+import { SearchResultComponent } from './search-page/search-page-right/search-result/search-result.component';
+import { CommonModule } from '@angular/common/src/common_module';
 
 const appRoutes: Routes = [
   {
@@ -37,11 +41,13 @@ const appRoutes: Routes = [
     HomePageComponent,
     SearchPageLeftComponent,
     SearchPageRightComponent,
+    SearchDropdownComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes
     )

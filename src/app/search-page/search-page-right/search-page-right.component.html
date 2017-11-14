@@ -3,9 +3,18 @@
   <div class="search-bar" [title]="title">
     <!-- Search Input. -->
     <div class="search-input-width">
-      <div class="search-icon"></div>
-      <div class="search-input-text">
-        <input type="text" placeholder="Search">
+      <div
+        class="slider"
+       [class.search]="searchEnable"
+      ></div>
+
+      <div
+        class="search-icon"
+        (click)="enableSearch()"
+      ></div>
+
+      <div class="search-input-text" [class.search]="searchEnable">
+        <input type="text" placeholder="Search" #searchInput/>
       </div>
     </div>
     <!-- End of Search Input. -->
@@ -14,15 +23,6 @@
   <div class="content">
     <!-- <router-outlet name="search-result"></router-outlet> -->
 
-    <div class="search-input-dropdown">
-      <!-- Search Input Dropdown Items. -->
-      <div class="dropdown-item" *ngFor="let item of items">
-        <div class="search-item-width">
-          <div class="search-icon"></div>
-          <div class="search-content">{{item}}</div>
-        </div>
-      </div>
-      <!-- End of Search Input Dropdown. -->
-    </div>
+    <app-search-dropdown [list]="items"></app-search-dropdown>
   </div>
 </div>

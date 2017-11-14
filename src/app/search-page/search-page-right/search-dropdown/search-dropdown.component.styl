@@ -1,3 +1,7 @@
+@import '../../../px-to-vw.styl';
+
+$content-width = $(16px) * 6 + $(188px) * 2 + $(182px);
+
 .search-input-dropdown {
   .dropdown-item {
     display: flex;
@@ -30,7 +34,7 @@
         content: "search";
 
         font-family: Material Icons;
-        font-size: $(24px);
+        font-size: $(18.75);
 
         color: alpha(#303030, 0.4);
       }
@@ -38,7 +42,7 @@
 
     .search-content {
       font-family: Lato;
-      font-size: $(24px);
+      font-size: $(18.75);
       color: alpha(#303030, 0.4);
     }
   }
