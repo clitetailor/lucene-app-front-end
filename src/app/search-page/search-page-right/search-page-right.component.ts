@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPageRightComponent implements OnInit {
 
+  title = '';
+
   constructor() { }
 
   ngOnInit() {
