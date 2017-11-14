@@ -1,0 +1,45 @@
+.search-input-dropdown {
+  .dropdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    height: $(60px);
+
+    &:hover {
+      background: alpha(blue, 0.08);
+      cursor: pointer;
+    }
+
+    .search-item-width {
+      display: flex;
+      align-items: center;
+      width: $content-width;
+
+      padding-left: $(36px);
+    }
+
+    .search-icon {
+      display: flex;
+      height: 100%;
+      margin-right: $(10px);
+
+      align-items: center;
+
+      &::after {
+        content: "search";
+
+        font-family: Material Icons;
+        font-size: $(24px);
+
+        color: alpha(#303030, 0.4);
+      }
+    }
+
+    .search-content {
+      font-family: Lato;
+      font-size: $(24px);
+      color: alpha(#303030, 0.4);
+    }
+  }
+}

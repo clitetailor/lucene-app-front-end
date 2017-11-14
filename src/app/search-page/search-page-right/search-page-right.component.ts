@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPageRightComponent implements OnInit {
 
-  title = '';
+  title = 'what is this?';
+
+  items = [
+    'what is that thing?',
+    'what is that that thing?'
+  ];
 
   constructor() { }
 

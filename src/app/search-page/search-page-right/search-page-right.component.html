@@ -1,9 +1,28 @@
 <div class="right-wrapper">
-  <div class="search-bar" [title]="title">
 
+  <div class="search-bar" [title]="title">
+    <!-- Search Input. -->
+    <div class="search-input-width">
+      <div class="search-icon"></div>
+      <div class="search-input-text">
+        <input type="text" placeholder="Search">
+      </div>
+    </div>
+    <!-- End of Search Input. -->
   </div>
 
   <div class="content">
+    <!-- <router-outlet name="search-result"></router-outlet> -->
 
+    <div class="search-input-dropdown">
+      <!-- Search Input Dropdown Items. -->
+      <div class="dropdown-item" *ngFor="let item of items">
+        <div class="search-item-width">
+          <div class="search-icon"></div>
+          <div class="search-content">{{item}}</div>
+        </div>
+      </div>
+      <!-- End of Search Input Dropdown. -->
+    </div>
   </div>
 </div>

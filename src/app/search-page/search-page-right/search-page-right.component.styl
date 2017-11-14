@@ -7,70 +7,11 @@ $content-width = $(16px) * 6 + $(188px) * 2 + $(182px);
   flex-flow: column nowrap;
   align-items: stretch;
 
-  .search-bar {
-    display: flex;
-
-    width: $content-width;
-    height: $(91px);
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-
-    $input-style() {
-      font-family: Lato;
-      font-size: $(24px);
-      color: #303030;
-    }
-
-    input {
-      height: 100%;
-
-      border: none;
-      outline: none;
-      box-shadow: none;
-
-      $input-style();
-
-      background: none;
-      z-index: 3;
-    }
-
-    .search-icon {
-      display: flex;
-      height: 100%;
-      margin-right: $(10px);
-
-      align-items: center;
-
-      &::after {
-        content: 'search';
-
-        font-family: Material Icons;
-        font-size: $(24px);
-
-        color: #303030;
-      }
-    }
-
-    &::after {
-      content: attr(title);
-
-      display: block;
-      position: absolute;
-
-      $input-style();
-
-      color: transparent;
-      text-shadow: 0 0 0 alpha(#303030, 0.5);
-
-      z-index: 2;
-    }
-  }
+  @import './search-input.styl';
 
   .content {
     flex: 1 1 auto;
 
-    .search-drop-down {
-
-    }
+    @import './search-input-dropdown';
   }
 }
