@@ -5,24 +5,36 @@
     <div class="search-input-width">
       <div
         class="slider"
-       [class.search]="searchEnable"
-      ></div>
+        [class.active]="searchFieldActive">
+        <nav>
+          <div class="tab" routerLink="">Home</div>
+          <div class="tab">About</div>
+        </nav>
+      </div>
 
       <div
         class="search-icon"
-        (click)="enableSearch()"
-      ></div>
+        (click)="openSearchField()">
+      </div>
 
-      <div class="search-input-text" [class.search]="searchEnable">
-        <input type="text" placeholder="Search" #searchInput/>
+      <div class="search-input-text" [class.active]="searchFieldActive">
+        <input
+          type="text" placeholder="Search"
+          #searchInput
+          (enter)="confirm()"/>
+        <div class="close-icon" (click)="closeSearchField()"></div>
       </div>
     </div>
     <!-- End of Search Input. -->
   </div>
 
   <div class="content">
-    <!-- <router-outlet name="search-result"></router-outlet> -->
+    <ng-template [ngIf]="searchFieldActive">
+      <app-search-dropdown [list]="items"></app-search-dropdown>
+    </ng-template>
 
-    <app-search-dropdown [list]="items"></app-search-dropdown>
+    <ng-template [ngIf]="!searchFieldActive">
+      <app-search-result></app-search-result>
+    </ng-template>
   </div>
 </div>

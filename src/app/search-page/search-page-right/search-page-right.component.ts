@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewChild } from '@angular/core/src/metadata/di';
-import { ElementRef } from '@angular/core/src/linker/element_ref';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-search-page-right',
   templateUrl: './search-page-right.component.html',
   styleUrls: ['./search-page-right.component.styl']
 })
-export class SearchPageRightComponent implements OnInit, AfterViewInit {
+export class SearchPageRightComponent implements OnInit {
 
   title = 'what is this?';
 
@@ -17,19 +14,29 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
     'what is that that thing?'
   ];
 
-  @ViewChild('searchInput') searchInput;
+  searchFieldActive = false;
+  searchConfirmed = false;
 
-  searchEnable = false;
+  @ViewChild('searchInput') searchInput: ElementRef;
+  @HostListener('keydown.esc') onEscapeButtonClick() {
+    this.closeSearchField();
+  }
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
+  openSearchField() {
+    this.searchFieldActive = true;
+    this.searchInput.nativeElement.focus();
   }
 
-  enableSearch() {
-    this.searchEnable = !this.searchEnable;
+  closeSearchField() {
+    this.searchFieldActive = false;
+  }
+
+  confirm() {
+
   }
 }
