@@ -31,7 +31,7 @@ export class SearchPageRightComponent implements OnInit {
   }
 
   initialize() {
-    this.results = []
+    this.results = [];
   }
 
   openSearchField() {
