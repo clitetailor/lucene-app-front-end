@@ -13,6 +13,8 @@ import { SearchPageRightComponent } from './search-page/search-page-right/search
 import { SearchDropdownComponent } from './search-page/search-page-right/search-dropdown/search-dropdown.component';
 import { SearchResultComponent } from './search-page/search-page-right/search-result/search-result.component';
 import { CommonModule } from '@angular/common/src/common_module';
+import { SearchService } from './search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   {
@@ -48,11 +50,16 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
-  providers: [ ],
-  bootstrap: [AppComponent]
+  providers: [
+    SearchService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
