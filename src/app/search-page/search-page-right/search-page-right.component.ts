@@ -11,10 +11,7 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
 
   snippet = '';
 
-  dropdownList = [
-    'what are you thinking?',
-    'what do you think?'
-  ];
+  dropdownList = [];
 
   searchFieldActive = false;
   searchConfirmed = false;
@@ -40,40 +37,104 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
     this.results = [];
   }
 
-  suggest() {
+  public onKeyDown($event: KeyboardEvent) {
+    this.checkSnippet($event);
+
+    if ($event.key.toLowerCase() === 'enter') {
+      this.search();
+    }
+
+    if ($event.key.toLowerCase() === 'tab') {
+      this.autocomplete();
+    }
+  }
+
+  public onKeyUp($event: KeyboardEvent) {
+    this.checkSnippet($event);
+
+    this.suggest();
+  }
+
+  public onKeyPress($event: KeyboardEvent) {
+    this.checkSnippet($event);
+  }
+
+  private checkSnippet($event: KeyboardEvent) {
+    const input: HTMLInputElement = this.searchInput.nativeElement,
+      matchPos = this.snippet.indexOf(input.value);
+
+    if (input.value.length === 0) {
+      this.clearSnippet();
+    }
+
+    if (
+      input.value.length === 1 && $event.key.toLowerCase() === 'backspace'
+      || this.snippet.length > 0 && matchPos !== 0
+    ) {
+      this.clearSnippet();
+    }
+  }
+
+  private clearSnippet() {
+    const input: HTMLInputElement = this.searchInput.nativeElement;
+
+    this.snippet = '';
+  }
+
+  private suggest() {
     this.searchService.suggest(
       this.searchInput
         .nativeElement
         .value
     )
-      .subscribe((res: string[]) => {
+      .then((res: string[]) => {
         this.dropdownList = res;
-        console.log(res);
-      }, err => console.error(err));
+
+        if (res.length > 0 && res[0] !== this.snippet) {
+          this.snippet = res[0];
+        }
+
+        this.searchInput.nativeElement.focus();
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
-  search() {
+  private search() {
     this.searchService.search(
       this.searchInput
         .nativeElement
         .value
     )
       .then((res: any[]) => {
-        console.log(res);
         this.results = res;
+
+        this.closeSearchField();
       });
   }
 
-  openSearchField() {
+  private openSearchField() {
     this.searchFieldActive = true;
     this.searchInput.nativeElement.focus();
   }
 
-  closeSearchField() {
+  private closeSearchField() {
     this.searchFieldActive = false;
   }
 
-  confirm() {
+  private autocomplete() {
+    const input: HTMLInputElement = this.searchInput.nativeElement;
+    if (input.value && this.snippet.length > input.value.length) {
+      input.value = this.snippet;
+      this.clearSnippet();
+      input.focus();
+
+      this.suggest();
+    }
+  }
+
+  private confirm() {
 
   }
 }

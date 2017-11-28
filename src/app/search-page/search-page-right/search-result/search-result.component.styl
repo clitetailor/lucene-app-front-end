@@ -23,25 +23,55 @@ $content-width = $(16px) * 6 + $(188px) * 2 + $(182px);
   }
 
   .results {
-    .result-page {
+    max-height: 100%;
+    max-width: 100%;
+
+    flex: 1 1 auto;
+    overflow: auto;
+
+    .result-item {
       display: flex;
       flex-flow: column nowrap;
+
       align-items: center;
+      justify-content: flex-start;
 
-      * {
-        width: $content-width;
-      }
+      .content {
+        max-width: $content-width;
 
-      .page-title h2 {
-        font-family: Lato;
-        font-size: $(18.75px);
+        text-overflow: ellipsis;
 
-        margin: $(3px) 0;
-      }
+        cursor: pointer;
 
-      .page-preview-content p {
-        font-family: Lato;
-        font-size: $(16px);
+        p, h2 {
+          font-family: Lato;
+        }
+
+        h2 {
+          font-size: $(18.75px);
+          font-weight: bold;
+        }
+
+        p {
+          font-size: $(16px);
+        }
+
+        p::after {
+          content: "...";
+
+          display: inline;
+        }
+
+        h2, p {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 5;
+
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          white-space: pre-line;
+        }
       }
     }
   }

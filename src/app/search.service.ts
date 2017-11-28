@@ -24,12 +24,12 @@ export class SearchService {
 
   public suggest(string: string) {
     if (string === '') {
-      return;
+      return Promise.resolve([]);
     }
     return this.http.get(
       this.site(`suggest/${string}`)
     )
-      .debounceTime(300);
+      .toPromise();
   }
 
   public search(searchString) {

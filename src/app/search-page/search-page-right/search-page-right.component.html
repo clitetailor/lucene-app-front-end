@@ -24,8 +24,9 @@
         <input
           type="text" placeholder="Search"
           #searchInput
-          (keydown.enter)="search()"
-          (keyup)="suggest()"/>
+          (keydown)="onKeyDown($event)"
+          (keyup)="onKeyUp($event)"
+          (keypress)="onKeyPress($event)"/>
         <div class="close-icon" (click)="closeSearchField()"></div>
       </div>
     </div>

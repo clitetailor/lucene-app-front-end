@@ -4,17 +4,15 @@
   </div>
 
   <div class="results" *ngIf="isAbleToShow()">
-    <div class="result-page" *ngFor="let item of results">
-      <div class="page-title">
-        <h2>
-          <a>
+    <div class="result-item" *ngFor="let item of results" >
+      <div class="content">
+        <a>
+          <h2>
             {{item.title}}
-          </a>
-        </h2>
-      </div>
+          </h2>
+        </a>
 
-      <div class="page-preview-content">
-        <p>{{item.content}}</p>
+        <p>{{item.content.slice(0, 285)}}</p>
       </div>
     </div>
   </div>

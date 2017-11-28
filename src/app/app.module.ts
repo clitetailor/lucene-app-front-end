@@ -15,6 +15,7 @@ import { SearchResultComponent } from './search-page/search-page-right/search-re
 import { CommonModule } from '@angular/common/src/common_module';
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SitePageComponent } from './search-page/search-page-right/site-page/site-page.component';
 
 const appRoutes: Routes = [
   {
@@ -22,15 +23,10 @@ const appRoutes: Routes = [
     component: HomePageComponent,
     children: [
       { path: '', component: HomePageLeftComponent, outlet: 'left-side' },
-      { path: '', component: HomePageRightComponent, outlet: 'right-side' }
-    ]
-  },
-  {
-    path: 'search',
-    component: HomePageComponent,
-    children: [
-      { path: '', component: SearchPageLeftComponent, outlet: 'left-side' },
-      { path: '', component: SearchPageRightComponent, outlet: 'right-side' }
+      { path: '', component: HomePageRightComponent, outlet: 'right-side' },
+      { path: 'search-page', component: SearchPageRightComponent, outlet: 'right-side' },
+      { path: 'statistic', component: SearchPageLeftComponent, outlet: 'left-side' },
+      { path: 'site-page/:id', component: SitePageComponent, outlet: 'right-side' }
     ]
   }
 ];
@@ -45,6 +41,7 @@ const appRoutes: Routes = [
     SearchPageRightComponent,
     SearchDropdownComponent,
     SearchResultComponent,
+    SitePageComponent,
   ],
   imports: [
     BrowserModule,

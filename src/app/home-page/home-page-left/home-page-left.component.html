@@ -19,6 +19,6 @@
         </div>
       </div>
 
-      <button [routerLink]="['search']">Getting Started</button>
+      <button [routerLink]="[{ outlets: { 'left-side': ['statistic'], 'right-side': ['search-page'] } }]">Getting Started</button>
   </div>
 </div>
