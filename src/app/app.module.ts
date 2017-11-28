@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomePageRightComponent } from './home-page/home-page-right/home-page-right.component';
 import { HomePageLeftComponent } from './home-page/home-page-left/home-page-left.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { SearchPageLeftComponent } from './search-page/search-page-left/search-page-left.component';
 import { SearchPageRightComponent } from './search-page/search-page-right/search-page-right.component';
 import { SearchDropdownComponent } from './search-page/search-page-right/search-dropdown/search-dropdown.component';
@@ -18,17 +17,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { SitePageComponent } from './search-page/search-page-right/site-page/site-page.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomePageComponent,
-    children: [
-      { path: '', component: HomePageLeftComponent, outlet: 'left-side' },
-      { path: '', component: HomePageRightComponent, outlet: 'right-side' },
-      { path: 'search-page', component: SearchPageRightComponent, outlet: 'right-side' },
-      { path: 'statistic', component: SearchPageLeftComponent, outlet: 'left-side' },
-      { path: 'site-page/:id', component: SitePageComponent, outlet: 'right-side' }
-    ]
-  }
+  { path: '', component: HomePageLeftComponent, outlet: 'left-side' },
+  { path: '', component: HomePageRightComponent, outlet: 'right-side' },
+  { path: 'search-page', component: SearchPageRightComponent, outlet: 'right-side' },
+  { path: 'statistic', component: SearchPageLeftComponent, outlet: 'left-side' },
+  { path: 'site-page/:id', component: SitePageComponent, outlet: 'right-side' }
 ];
 
 @NgModule({
@@ -36,7 +29,6 @@ const appRoutes: Routes = [
     AppComponent,
     HomePageRightComponent,
     HomePageLeftComponent,
-    HomePageComponent,
     SearchPageLeftComponent,
     SearchPageRightComponent,
     SearchDropdownComponent,
