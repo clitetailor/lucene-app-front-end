@@ -44,6 +44,12 @@ export class SearchService {
       .toPromise();
   }
 
+  public getSite(id) {
+    return this.http.get(
+      this.site(`document/${id}`)
+    ).toPromise();
+  }
+
   private encodeBase64Unicode(str) {
     return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
       function toSolidBytes(match, p1) {

@@ -1,3 +1,7 @@
-<p>
-  site-page works!
-</p>
+<div class="wrapper">
+  <h1>{{content?.title}}</h1>
+
+  <p *ngFor="let paragraph of content?.content.split('\n')">
+    {{paragraph}}
+  </p>
+</div>

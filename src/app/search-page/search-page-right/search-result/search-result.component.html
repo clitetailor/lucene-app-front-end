@@ -1,19 +1,25 @@
 <div class="search-result">
-  <div class="no-result" *ngIf="!isAbleToShow()">
-    <b>There's no result so far!</b>
-  </div>
+  <ng-template [ngIf]="!content">
+    <div class="no-result" *ngIf="!isAbleToShow()">
+      <b>There's no result so far!</b>
+    </div>
 
-  <div class="results" *ngIf="isAbleToShow()">
-    <div class="result-item" *ngFor="let item of results" >
-      <div class="content">
-        <a>
-          <h2>
-            {{item.title}}
-          </h2>
-        </a>
+    <div class="results" *ngIf="isAbleToShow()">
+      <div class="result-item" *ngFor="let item of results">
+        <div class="content" (click)="navigateToSite(item.id)">
+          <a>
+            <h2>
+              {{item.title}}
+            </h2>
+          </a>
 
-        <p>{{item.content.slice(0, 285)}}</p>
+          <p>{{item.content.slice(0, 285)}}</p>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-template>
+
+  <ng-template [ngIf]="content">
+    <app-site-page [content]="content"></app-site-page>
+  </ng-template>
 </div>

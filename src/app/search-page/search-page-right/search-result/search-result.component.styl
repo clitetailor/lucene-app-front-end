@@ -22,6 +22,24 @@ $content-width = $(16px) * 6 + $(188px) * 2 + $(182px);
     }
   }
 
+  >>> app-site-page {
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: $(300px);
+
+    flex: 1 1 auto;
+
+    max-height: 100%;
+    max-width: 100%;
+
+    overflow: auto;
+
+    .wrapper {
+      max-width: $content-width
+    }
+  }
+
   .results {
     max-height: 100%;
     max-width: 100%;

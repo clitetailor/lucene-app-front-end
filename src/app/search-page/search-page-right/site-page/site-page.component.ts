@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-site-page',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-page.component.styl']
 })
 export class SitePageComponent implements OnInit {
+
+  @Input('content') content;
 
   constructor() { }
 
