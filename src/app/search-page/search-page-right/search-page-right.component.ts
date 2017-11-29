@@ -1,24 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import {
+  Component, OnInit, ViewChild, ElementRef,
+  HostListener, OnDestroy
+} from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 import { SearchService } from '../../search.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-search-page-right',
   templateUrl: './search-page-right.component.html',
   styleUrls: ['./search-page-right.component.styl']
 })
-export class SearchPageRightComponent implements OnInit, AfterViewInit {
+export class SearchPageRightComponent implements OnInit, OnDestroy, AfterViewInit {
 
   snippet = '';
-
   dropdownList = [];
 
   searchFieldActive = false;
-  searchConfirmed = false;
 
   results = [];
 
-  debounce;
+  private suggestSubscription: Subscription;
+  private searchSubscription: Subscription;
 
   @ViewChild('searchInput') searchInput: ElementRef;
   @HostListener('window:keydown.esc') onEscapeButtonClick() {
@@ -28,7 +31,23 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
-    this.initialize();
+    this.suggestSubscription = this.searchService
+      .suggestionObservable
+      .subscribe(suggestions => {
+        this.dropdownList = suggestions;
+        this.snippet = suggestions[0];
+      });
+
+    this.searchSubscription = this.searchService
+      .searchResultObservable
+      .subscribe(result => {
+        console.log(result);
+      });
+  }
+
+  ngOnDestroy() {
+    this.suggestSubscription.unsubscribe();
+    this.searchSubscription.unsubscribe();
   }
 
   ngAfterViewInit() { }
@@ -82,7 +101,7 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
   }
 
   private suggest() {
-    this.searchService.suggestionSubscription.next(
+    this.searchService.suggestionSubject.next(
       this.searchInput
         .nativeElement
         .value
@@ -90,7 +109,7 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
   }
 
   private search() {
-    this.searchService.searchResultSubscription.next(
+    this.searchService.searchResultSubject.next(
       this.searchInput
         .nativeElement
         .value
@@ -115,9 +134,5 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
 
       this.suggest();
     }
-  }
-
-  private confirm() {
-
   }
 }
