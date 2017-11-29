@@ -39,6 +39,7 @@
     </ng-template>
 
     <ng-template [ngIf]="!searchFieldActive">
+      <router-outlet named="search-content"></router-outlet>
       <app-search-result [results]="results"></app-search-result>
     </ng-template>
   </div>

@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common/src/common_module';
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SitePageComponent } from './search-page/search-page-right/site-page/site-page.component';
+import { SearchInputComponent } from './search-page/search-page-right/search-input/search-input.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageLeftComponent, outlet: 'left-side' },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     SearchDropdownComponent,
     SearchResultComponent,
     SitePageComponent,
+    SearchInputComponent,
   ],
   imports: [
     BrowserModule,

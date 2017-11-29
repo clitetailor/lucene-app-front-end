@@ -82,36 +82,19 @@ export class SearchPageRightComponent implements OnInit, AfterViewInit {
   }
 
   private suggest() {
-    this.searchService.suggest(
+    this.searchService.suggestionSubscription.next(
       this.searchInput
         .nativeElement
         .value
-    )
-      .then((res: string[]) => {
-        this.dropdownList = res;
-
-        if (res.length > 0 && res[0] !== this.snippet) {
-          this.snippet = res[0];
-        }
-
-        this.searchInput.nativeElement.focus();
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    );
   }
 
   private search() {
-    this.searchService.search(
+    this.searchService.searchResultSubscription.next(
       this.searchInput
         .nativeElement
         .value
-    )
-      .then((res: any[]) => {
-        this.results = res;
-
-        this.closeSearchField();
-      });
+    );
   }
 
   private openSearchField() {

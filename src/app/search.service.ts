@@ -1,18 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AsyncSubject } from 'rxjs/AsyncSubject';
+import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class SearchService {
+export class SearchService implements OnInit {
   private host = 'http://localhost:9090';
 
-  private _suggestions = [];
+  public suggestionSubscription = new AsyncSubject<String>();
+  public searchResultSubscription = new AsyncSubject<String>();
 
   constructor(private http: HttpClient) { }
 
-  public get suggestions() {
-    return this._suggestions;
+  public ngOnInit() {
+    this.suggestionSubscription
+      .debounceTime(200)
+      .mergeMap(rawString => this.suggest(rawString));
+
+    this.searchResultSubscription
+      .debounceTime(200)
+      .mergeMap(rawString => this.search(rawString));
   }
 
   public site(path) {
@@ -22,17 +32,20 @@ export class SearchService {
     ].join('/');
   }
 
-  public suggest(string: string) {
-    if (string === '') {
-      return Promise.resolve([]);
-    }
+  public getSite(id) {
     return this.http.get(
-      this.site(`suggest/${string}`)
+      this.site(`document/${id}`)
     )
       .toPromise();
   }
 
-  public search(searchString) {
+  private suggest(string: String): Observable<any> {
+    return this.http.get(
+      this.site(`suggest/${string}`)
+    );
+  }
+
+  private search(searchString: String) {
     function debug(arg) {
       console.log(arg);
       return arg;
@@ -40,14 +53,7 @@ export class SearchService {
 
     return this.http.get(
       this.site(`search/${debug(searchString)}`)
-    )
-      .toPromise();
-  }
-
-  public getSite(id) {
-    return this.http.get(
-      this.site(`document/${id}`)
-    ).toPromise();
+    );
   }
 
   private encodeBase64Unicode(str) {

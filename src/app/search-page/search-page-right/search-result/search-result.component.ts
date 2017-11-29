@@ -23,7 +23,6 @@ export class SearchResultComponent implements OnInit {
   }
 
   navigateToSite(id) {
-    console.log(id);
     this.searchService.getSite(id)
       .then(content => {
         this.content = content;
